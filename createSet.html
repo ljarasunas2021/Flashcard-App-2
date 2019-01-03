@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>QuizLit</title>
+    <link rel="stylesheet" href="./other/css.css">
+  </head>
+  <body>
+
+    <div class="header">
+      <a href="#default" class="logo">QuizLIT</a>
+      <div class="header-right">
+        <a href="index.html">Home</a>
+        <a class="active" href="createSet.html">Create Set</a>
+        <a href="yourSets.html">Your Sets</a>
+      </div>
+    </div>
+
+    <div class="mainText">
+        <h3> Title of Set </h3>
+
+        <textarea name="titleOfSet" rows = "1" cols = "15" id="titleOfSet"></textarea>
+
+        <h3> List of Terms </h3>
+        <p>(Each word goes on a new line)</p>
+
+        <textarea name="newTerms" rows="8" cols="40" id="newTerms"></textarea>
+
+        <br> <br>
+
+        <button onclick="funcCreateDeck()" class = "button">Create Deck</button>
+
+        <script>
+        function funcCreateDeck() {
+          let nameOfDeck = document.getElementById("titleOfSet").value;
+          let allTerms = document.getElementById("newTerms").value;
+
+          if (nameOfDeck == "") {
+            alert("Please Create A Title");
+          }
+          if (allTerms == "") {
+            alert("Please Create Some Terms");
+          }
+          let indexOfLastNewLine = 0;
+          let allTermsArray = new Array();
+          let j = 1;
+
+          for(let h = 0; j > 0; h++) {
+            let indexOfNewLine = allTerms.indexOf("\n",indexOfLastNewLine)
+
+            if (indexOfNewLine < 0) {
+              j = -1;
+              allTermsArray.push(allTerms.slice(indexOfLastNewLine))
+            } else if (j != -1) {
+              allTermsArray.push(allTerms.slice(indexOfLastNewLine,indexOfNewLine))
+            }
+
+            indexOfLastNewLine = indexOfNewLine + 1;
+          }
+        }
+        </script>
+      </div>
+
+      <div id="create_set_container"></div>
+
+      <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+      <script src="./components/create_set.jsx"></script>
+
+  </body>
+</html>
