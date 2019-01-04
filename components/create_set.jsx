@@ -40,7 +40,8 @@ class NewSet extends Component {
 
   createDefinitions() {
     let allDefinitions = [];
-    let dictionary = JSON.stringify(url"../src/dictionary.json");
+    let contents = require(../other/dictionary.json)
+    let dictionary = JSON.stringify(contents);
     for (let g = 0; g < allTermsArray.length; g ++)
       allDefinitions[g] = dictionary.allTermsArray[g]
     ]
